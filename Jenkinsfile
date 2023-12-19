@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        SSH_CREDENTIALS_ID = 'jenkins-project' // Replace with your actual SSH credentials ID
-        SERVER_IP = 'ec2-54-224-197-21.compute-1.amazonaws.com' // monitored (the server we are deploying to)
+        SSH_CREDENTIALS_ID = 'my-jenkins-server' // Replace with your actual SSH credentials ID
+        SERVER_IP = 'ec2-34-230-51-178.compute-1.amazonaws.com' // monitored (the server we are deploying to)
         REMOTE_USER = 'ubuntu' // Change thhttps://github.com/Mutuwa99/thato_pro.gitis to the appropriate non-root user
-        GITHUB_REPO_URL = 'https://github.com/SthandwaKay/thato.git'
+        GITHUB_REPO_URL = 'https://github.com/SthandwaKay/my-jenkins-server.git'
     }
 
     stages {
@@ -16,7 +16,7 @@ pipeline {
                     deleteDir()
 
                     // Checkout the code from the GitHub repository
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: GITHUB_REPO_URL]]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: GITHUB_REPO_URL]]])
                 }
             }
         }
